@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Дневник Артериального Давления</string>
+    <string name="ap_details_morning">Утро</string>
+    <string name="ap_details_evening">Вечер</string>
+    <string name="ap_details_hint">SYS/DIA</string>
+    <string name="ap_details_helper_text">Укажите данные с разделителем "/". Например, 160/80</string>
+    <string name="ap_details_fab_content">Сохранить показатели артериального давления</string>
+</resources>
