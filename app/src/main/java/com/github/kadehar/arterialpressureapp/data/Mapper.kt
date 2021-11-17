@@ -14,7 +14,7 @@ fun PressureEntity.toArterialPressure(): ArterialPressure =
 
 fun ArterialPressure.toPressureEntity(): PressureEntity =
     PressureEntity(
-        id = UUID.randomUUID().toString(),
+        id = id,
         morning = morning,
         evening = evening,
         timestamp = timestamp
