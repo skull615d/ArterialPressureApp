@@ -24,7 +24,9 @@ class ArterialPressureListFragment : Fragment(R.layout.fragment_arterial_pressur
     private val viewModel by viewModel<ArterialPressureListViewModel>()
     private val apListAdapter by lazy(LazyThreadSafetyMode.NONE) {
         ListDelegationAdapter(
-            arterialPressureListAdapterDelegate { }
+            arterialPressureListAdapterDelegate {
+                viewModel.processUiEvent(UiEvent.OnArterialPressureItemClicked(it))
+            }
         )
     }
 
@@ -32,6 +34,14 @@ class ArterialPressureListFragment : Fragment(R.layout.fragment_arterial_pressur
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
         viewModel.viewState.observe(viewLifecycleOwner, ::render)
+        binding.apDetailsCreateButton.setOnClickListener {
+            viewModel.processUiEvent(UiEvent.OnAddArterialPressureButtonClicked)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.processUiEvent(DataEvent.LoadData)
     }
 
     private fun initAdapter() {
@@ -39,7 +49,7 @@ class ArterialPressureListFragment : Fragment(R.layout.fragment_arterial_pressur
             setAdapterAndCleanupOnDetachFromWindow(apListAdapter)
             layoutManager = LinearLayoutManager(
                 requireContext(),
-                LinearLayoutManager.HORIZONTAL, false
+                LinearLayoutManager.VERTICAL, false
             )
         }
     }

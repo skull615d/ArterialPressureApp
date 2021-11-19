@@ -8,7 +8,7 @@ import java.util.*
 
 @Entity(tableName = TABLE_NAME)
 data class PressureEntity(
-    @PrimaryKey @ColumnInfo(name = "id") val id: String = UUID.randomUUID().toString(),
+    @PrimaryKey @ColumnInfo(name = "id") val id: String,
     @ColumnInfo(name = "morning") val morning: String,
     @ColumnInfo(name = "evening") val evening: String,
     @ColumnInfo(name = "timestamp") val timestamp: Long

@@ -8,6 +8,12 @@ data class ViewState(
     val errorMessage: String?
 )
 
+sealed class UiEvent : Event {
+    object OnAddArterialPressureButtonClicked : UiEvent()
+    data class OnArterialPressureItemClicked(val arterialPressure: APListItems.ArterialPressure) :
+        UiEvent()
+}
+
 sealed class DataEvent : Event {
     object LoadData : DataEvent()
     data class SuccessfulDataLoad(val arterialPressureList: List<APListItems>) : DataEvent()
