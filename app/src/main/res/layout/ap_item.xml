@@ -3,58 +3,58 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/apItemCard"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
     android:layout_margin="16dp"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:divider="?android:dividerHorizontal"
-        android:orientation="horizontal"
-        android:showDividers="beginning|middle|end">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="16dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/apMorningPicture"
+            android:layout_width="175dp"
+            android:layout_height="175dp"
+            android:contentDescription="@string/ap_details_morning"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/sun_cloud_icon_512" />
+
+        <TextView
+            android:id="@+id/tvMorningData"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:orientation="vertical">
+            android:layout_margin="10dp"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/apMorningPicture"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/apMorningPicture"
+            app:layout_constraintEnd_toEndOf="@+id/apMorningPicture"
+            tools:text="160/80"/>
 
-            <TextView
-                android:id="@+id/tvMorningData"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="160/80" />
+        <ImageView
+            android:id="@+id/apEveningPicture"
+            android:layout_width="175dp"
+            android:layout_height="175dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/apMorningPicture"
+            app:srcCompat="@drawable/moon_clouds_icon_512"
+            android:contentDescription="@string/ap_details_evening" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/ap_details_morning"
-                android:textSize="11sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tvEveningData"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:orientation="vertical">
+            android:layout_margin="10dp"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/apEveningPicture"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/apEveningPicture"
+            app:layout_constraintTop_toBottomOf="@+id/apEveningPicture"
+            tools:text="160/80" />
 
-            <TextView
-                android:id="@+id/tvEveningData"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="160/80" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/ap_details_evening"
-                android:textSize="11sp" />
-        </LinearLayout>
-    </LinearLayout>
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

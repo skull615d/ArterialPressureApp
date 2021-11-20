@@ -10,7 +10,7 @@ interface PressureDao {
     @Update
     suspend fun updateRecord(entity: PressureEntity)
 
-    @Query("select * from pressure")
+    @Query("select * from pressure order by timestamp desc")
     suspend fun getAllRecords(): List<PressureEntity>
 
     @Query("select * from pressure where id = :id")
