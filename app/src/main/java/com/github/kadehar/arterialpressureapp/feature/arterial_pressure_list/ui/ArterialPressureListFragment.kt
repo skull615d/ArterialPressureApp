@@ -8,6 +8,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.github.kadehar.arterialpressureapp.R
 import com.github.kadehar.arterialpressureapp.base.setAdapterAndCleanupOnDetachFromWindow
 import com.github.kadehar.arterialpressureapp.base.setData
+import com.github.kadehar.arterialpressureapp.base.setThrottledClickListener
 import com.github.kadehar.arterialpressureapp.databinding.FragmentArterialPressureListBinding
 import com.github.kadehar.arterialpressureapp.feature.arterial_pressure_list.ui.adapter.arterialPressureListAdapterDelegate
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
@@ -34,7 +35,7 @@ class ArterialPressureListFragment : Fragment(R.layout.fragment_arterial_pressur
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
         viewModel.viewState.observe(viewLifecycleOwner, ::render)
-        binding.apDetailsCreateButton.setOnClickListener {
+        binding.apDetailsCreateButton.setThrottledClickListener {
             viewModel.processUiEvent(UiEvent.OnAddArterialPressureButtonClicked)
         }
     }
