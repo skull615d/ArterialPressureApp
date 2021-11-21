@@ -35,8 +35,10 @@ class ArterialPressureListFragment : Fragment(R.layout.fragment_arterial_pressur
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
         viewModel.viewState.observe(viewLifecycleOwner, ::render)
-        binding.apDetailsCreateButton.setThrottledClickListener {
-            viewModel.processUiEvent(UiEvent.OnAddArterialPressureButtonClicked)
+        with(binding) {
+            apDetailsCreateButton.setThrottledClickListener {
+                viewModel.processUiEvent(UiEvent.OnAddArterialPressureButtonClicked)
+            }
         }
     }
 

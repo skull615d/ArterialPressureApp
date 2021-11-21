@@ -3,7 +3,7 @@
     <string name="ap_details_morning">Morning</string>
     <string name="ap_details_evening">Evening</string>
     <string name="ap_details_hint">SYS/DIA</string>
-    <string name="ap_details_helper_text">Input data with delimiter "/". E.g. 160/80</string>
+    <string name="ap_details_helper_text">Input data. E.g. 160/80</string>
     <string name="ap_details_fab_content">Save Arterial Pressure data</string>
     <string name="ap_chip_text_today">Today</string>
     <string name="ap_chip_text_two_weeks">2 weeks</string>

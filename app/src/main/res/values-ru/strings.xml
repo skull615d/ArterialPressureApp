@@ -4,7 +4,7 @@
     <string name="ap_details_morning">Утро</string>
     <string name="ap_details_evening">Вечер</string>
     <string name="ap_details_hint">SYS/DIA</string>
-    <string name="ap_details_helper_text">Укажите данные с разделителем "/". Например, 160/80</string>
+    <string name="ap_details_helper_text">Укажите данные. Например, 160/80</string>
     <string name="ap_details_fab_content">Сохранить показатели артериального давления</string>
     <string name="ap_chip_text_today">Сегодня</string>
     <string name="ap_chip_text_two_weeks">2 нед.</string>
