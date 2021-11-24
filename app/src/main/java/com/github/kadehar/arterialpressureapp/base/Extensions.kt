@@ -1,7 +1,12 @@
 package com.github.kadehar.arterialpressureapp.base
 
+import android.content.Context
 import android.view.View
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.textfield.TextInputEditText
 import com.hannesdorfmann.adapterdelegates4.AbsDelegationAdapter
 
 fun <T> AbsDelegationAdapter<T>.setData(data: T) {
@@ -27,6 +32,18 @@ fun View.setThrottledClickListener(delay: Long = DEFAULT_THROTTLE_DELAY, onClick
         throttle(delay) {
             onClick(it)
         }
+    }
+}
+
+fun TextInputEditText.hideSystemKeyboard(activity: FragmentActivity) {
+    setOnEditorActionListener { _, action, _ ->
+        if (action == EditorInfo.IME_ACTION_DONE) {
+            val imm: InputMethodManager = activity
+                .getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(this.windowToken, 0)
+            return@setOnEditorActionListener true
+        }
+        return@setOnEditorActionListener false
     }
 }
 

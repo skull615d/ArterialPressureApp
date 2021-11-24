@@ -10,7 +10,9 @@ import com.github.kadehar.arterialpressureapp.base.setAdapterAndCleanupOnDetachF
 import com.github.kadehar.arterialpressureapp.base.setData
 import com.github.kadehar.arterialpressureapp.base.setThrottledClickListener
 import com.github.kadehar.arterialpressureapp.databinding.FragmentArterialPressureListBinding
+import com.github.kadehar.arterialpressureapp.feature.arterial_pressure_list.ui.adapter.arterialPressureFiltersAdapterDelegate
 import com.github.kadehar.arterialpressureapp.feature.arterial_pressure_list.ui.adapter.arterialPressureListAdapterDelegate
+import com.google.android.material.chip.Chip
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -27,6 +29,14 @@ class ArterialPressureListFragment : Fragment(R.layout.fragment_arterial_pressur
         ListDelegationAdapter(
             arterialPressureListAdapterDelegate {
                 viewModel.processUiEvent(UiEvent.OnArterialPressureItemClicked(it))
+            }
+        )
+    }
+
+    private val apFiltersAdapter by lazy(LazyThreadSafetyMode.NONE) {
+        ListDelegationAdapter(
+            arterialPressureFiltersAdapterDelegate {
+                viewModel.processUiEvent(UiEvent.OnFilterButtonClicked(it))
             }
         )
     }
@@ -48,16 +58,23 @@ class ArterialPressureListFragment : Fragment(R.layout.fragment_arterial_pressur
     }
 
     private fun initAdapter() {
-        binding.arterialPressureList.apply {
-            setAdapterAndCleanupOnDetachFromWindow(apListAdapter)
-            layoutManager = LinearLayoutManager(
-                requireContext(),
-                LinearLayoutManager.VERTICAL, false
-            )
+        with(binding) {
+            arterialPressureList.apply {
+                setAdapterAndCleanupOnDetachFromWindow(apListAdapter)
+                layoutManager = LinearLayoutManager(
+                    requireContext(),
+                    LinearLayoutManager.VERTICAL,
+                    false
+                )
+            }
+            arterialPressureFilters.apply {
+                setAdapterAndCleanupOnDetachFromWindow(apFiltersAdapter)
+            }
         }
     }
 
     private fun render(viewState: ViewState) {
-        apListAdapter.setData(viewState.arterialPressureList)
+        apListAdapter.setData(viewState.arterialPressureListShown)
+        apFiltersAdapter.setData(viewState.dateFilterList)
     }
 }

@@ -5,51 +5,17 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/apChipGroup"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/arterialPressureFilters"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:singleSelection="true"
-        app:chipSpacingHorizontal="16dp">
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/apChipToday"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/ap_chip_text_today"/>
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/apChipTwoWeeks"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/ap_chip_text_two_weeks"/>
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/apChipMonth"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/ap_chip_text_month"/>
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/apChipThreeMonths"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/ap_chip_text_three_months"/>
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/apChipSixMonths"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/ap_chip_text_six_months"/>
-    </com.google.android.material.chip.ChipGroup>
+        tools:listitem="@layout/ap_filter_item"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/arterialPressureList"
@@ -57,7 +23,7 @@
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/apChipGroup"
+        app:layout_constraintTop_toBottomOf="@+id/arterialPressureFilters"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:listitem="@layout/ap_item"
         />

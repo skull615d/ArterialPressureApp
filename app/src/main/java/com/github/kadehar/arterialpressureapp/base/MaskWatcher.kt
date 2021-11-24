@@ -6,7 +6,7 @@ import android.text.TextWatcher
 /*
 https://medium.com/@diegoy_kuri/masks-in-android-edit-text-fields-33a2fd47f1af
  */
-class MaskWatcher(val mask: String) : TextWatcher {
+class MaskWatcher(private val mask: String) : TextWatcher {
     companion object {
         fun buildDefault() = MaskWatcher("###/###")
     }

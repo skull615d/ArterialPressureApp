@@ -1,15 +1,13 @@
 package com.github.kadehar.arterialpressureapp.feature.arterial_pressure_details.ui
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
-import android.view.inputmethod.EditorInfo
-import android.view.inputmethod.InputMethodManager
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.github.kadehar.arterialpressureapp.R
 import com.github.kadehar.arterialpressureapp.base.MaskWatcher
+import com.github.kadehar.arterialpressureapp.base.hideSystemKeyboard
 import com.github.kadehar.arterialpressureapp.databinding.FragmentArterialPressureDetailsBinding
 import com.github.kadehar.arterialpressureapp.feature.arterial_pressure_list.ui.model.APListItems
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -45,28 +43,12 @@ class ArterialPressureDetailsFragment : Fragment(R.layout.fragment_arterial_pres
 
             with(apDetailsMorningText) {
                 addTextChangedListener(MaskWatcher.buildDefault())
-                setOnEditorActionListener { _, action, _ ->
-                    if (action == EditorInfo.IME_ACTION_DONE) {
-                        val imm: InputMethodManager = requireActivity()
-                            .getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                        imm.hideSoftInputFromWindow(this.windowToken, 0)
-                        return@setOnEditorActionListener true
-                    }
-                    return@setOnEditorActionListener false
-                }
+                hideSystemKeyboard(requireActivity())
             }
 
             with(apDetailsEveningText) {
                 addTextChangedListener(MaskWatcher.buildDefault())
-                setOnEditorActionListener { _, action, _ ->
-                    if (action == EditorInfo.IME_ACTION_DONE) {
-                        val imm: InputMethodManager = requireActivity()
-                            .getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                        imm.hideSoftInputFromWindow(this.windowToken, 0)
-                        return@setOnEditorActionListener true
-                    }
-                    return@setOnEditorActionListener false
-                }
+                hideSystemKeyboard(requireActivity())
             }
 
             apDetailsSaveButton.setOnClickListener {
