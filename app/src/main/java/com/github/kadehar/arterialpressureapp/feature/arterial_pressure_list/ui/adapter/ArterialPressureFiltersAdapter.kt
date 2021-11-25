@@ -19,10 +19,11 @@ fun arterialPressureFiltersAdapterDelegate(
     bind {
         binding.apply {
             apFilter.text = getString(item.string)
+            apFilter.isSelected = item.isSelected
             if (item.isSelected) {
-                apFilter.background = getDrawable(R.color.purple_200)
+                apFilter.setTextColor(getColor(R.color.white))
             } else {
-                apFilter.background = getDrawable(R.color.teal_700)
+                apFilter.setTextColor(getColor(R.color.black))
             }
         }
     }

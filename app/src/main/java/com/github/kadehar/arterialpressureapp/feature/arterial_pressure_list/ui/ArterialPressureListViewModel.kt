@@ -1,13 +1,11 @@
 package com.github.kadehar.arterialpressureapp.feature.arterial_pressure_list.ui
 
-import com.github.kadehar.arterialpressureapp.base.BaseViewModel
-import com.github.kadehar.arterialpressureapp.base.Event
+import com.github.kadehar.arterialpressureapp.R
+import com.github.kadehar.arterialpressureapp.base.*
 import com.github.kadehar.arterialpressureapp.base.nav.Screens
-import com.github.kadehar.arterialpressureapp.base.yesterday
 import com.github.kadehar.arterialpressureapp.domain.ArterialPressureInteractor
 import com.github.kadehar.arterialpressureapp.feature.arterial_pressure_list.ui.model.APListItems
 import com.github.terrakok.cicerone.Router
-import java.text.SimpleDateFormat
 import java.util.*
 
 class ArterialPressureListViewModel(
@@ -21,11 +19,11 @@ class ArterialPressureListViewModel(
             arterialPressureListShown = emptyList(),
             errorMessage = null,
             dateFilterList = listOf(
-                DateFilter.Today(false),
-                DateFilter.TwoWeeks(false),
-                DateFilter.OneMonth(false),
-                DateFilter.ThreeMonths(false),
-                DateFilter.SixMonths(false)
+                DateFilter(R.string.ap_chip_text_today, false, DateFilterType.Today),
+                DateFilter(R.string.ap_chip_text_two_weeks, false, DateFilterType.TwoWeeks),
+                DateFilter(R.string.ap_chip_text_month, false, DateFilterType.OneMonth),
+                DateFilter(R.string.ap_chip_text_three_months, false, DateFilterType.ThreeMonths),
+                DateFilter(R.string.ap_chip_text_six_months, false, DateFilterType.SixMonths)
             )
         )
 
@@ -55,35 +53,31 @@ class ArterialPressureListViewModel(
                 router.navigateTo(Screens.arterialPressureDetailsScreen(event.arterialPressure))
             }
             is UiEvent.OnFilterButtonClicked -> {
+                val selectedFilterIndex = previousState.dateFilterList.indexOfFirst { it.isSelected }
+
                 return previousState.copy(
                     arterialPressureListShown = previousState
-                        .arterialPressureList.filter {
+                        .arterialPressureList.filterIndexed { _, it ->
                             when (it) {
                                 is APListItems.ArterialPressure -> {
                                     val date = Date(it.timestamp)
-                                    date.after(yesterday())
+                                    if (selectedFilterIndex == event.index) {
+                                        true
+                                    } else {
+                                        when (event.index) {
+                                            0 -> date.after(today())
+                                            1 -> date.after(twoWeeks())
+                                            2 -> date.after(oneMonth())
+                                            3 -> date.after(threeMonths())
+                                            else -> date.after(sixMonths())
+                                        }
+                                    }
                                 }
                                 else -> false
                             }
                         },
-                    dateFilterList = previousState.dateFilterList.map {
-                        when(it) {
-                            is DateFilter.OneMonth -> {
-                                it.copy(false)
-                            }
-                            is DateFilter.SixMonths -> {
-                                it.copy(false)
-                            }
-                            is DateFilter.ThreeMonths -> {
-                                it.copy(false)
-                            }
-                            is DateFilter.Today -> {
-                                it.copy(true)
-                            }
-                            is DateFilter.TwoWeeks -> {
-                                it.copy(false)
-                            }
-                        }
+                    dateFilterList = previousState.dateFilterList.mapIndexed { index, it ->
+                        it.copy(isSelected = index == event.index && !it.isSelected)
                     }
                 )
             }
