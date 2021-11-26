@@ -65,11 +65,11 @@ class ArterialPressureListViewModel(
                                         true
                                     } else {
                                         when (event.index) {
-                                            0 -> date.after(today())
-                                            1 -> date.after(twoWeeks())
-                                            2 -> date.after(oneMonth())
-                                            3 -> date.after(threeMonths())
-                                            else -> date.after(sixMonths())
+                                            0 -> date.after(previousPeriod())
+                                            1 -> date.after(previousPeriod(days = 14))
+                                            2 -> date.after(previousPeriod(months = 1))
+                                            3 -> date.after(previousPeriod(months = 3))
+                                            else -> date.after(previousPeriod(months = 6))
                                         }
                                     }
                                 }
