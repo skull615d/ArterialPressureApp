@@ -47,22 +47,20 @@ dependencies {
 
     def mockito_kotlin = "3.2.0"
     def arch_core_version = "2.1.0"
-    def coroutines_test_version = "1.3.4"
+    def coroutines_test_version = "1.5.0"
 
     implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'androidx.appcompat:appcompat:1.4.0'
     implementation 'com.google.android.material:material:1.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
-    // Mokito
+    // Mockito
     testImplementation "org.mockito.kotlin:mockito-kotlin:$mockito_kotlin"
     testImplementation "androidx.arch.core:core-testing:$arch_core_version"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test_version"
-
-
     // AdapterDelegates
     implementation "com.hannesdorfmann:adapterdelegates4-kotlin-dsl:$adapter_delegate_version"
     implementation "com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:$adapter_delegate_version"
