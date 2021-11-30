@@ -1,3 +1,13 @@
 <resources>
-    <string name="app_name">ArterialPressureApp</string>
+    <string name="app_name">Arterial Pressure Diary</string>
+    <string name="ap_details_morning">Morning</string>
+    <string name="ap_details_evening">Evening</string>
+    <string name="ap_details_hint">SYS/DIA</string>
+    <string name="ap_details_helper_text">Input data. E.g. 160/80</string>
+    <string name="ap_details_fab_content">Save Arterial Pressure data</string>
+    <string name="ap_chip_text_today">Today</string>
+    <string name="ap_chip_text_two_weeks">2 weeks</string>
+    <string name="ap_chip_text_month">Month</string>
+    <string name="ap_chip_text_three_months">3 mths</string>
+    <string name="ap_chip_text_six_months">6 mths</string>
 </resources>

@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.github.kadehar.arterialpressureapp.data.local.PressureEntity.Companion.TABLE_NAME
+import java.util.*
 
 @Entity(tableName = TABLE_NAME)
 data class PressureEntity(
